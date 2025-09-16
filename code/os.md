@@ -111,19 +111,19 @@ os.close(fd)
 
 16. os.pipe(): 파이프 사용하기 
     - 파이프를 생성하여 프로세스 간의 통신을 가능하게 함
-    ```python
-    for dirpath, dirnames, filenames in os.walk('.'):
-    print(f"Current directory: {dirpath}")
-    for file in filenames:
-        print(file)
-    ```
+```python
+for dirpath, dirnames, filenames in os.walk('.'):
+print(f"Current directory: {dirpath}")
+for file in filenames:
+    print(file)
+```
 
 17. os.spwan**() 및 os.kill(): 자식 프로세스 시작 및 종료
     - os.spwan*() 함수는 새로운 프로세스 시작, os.kill()은 프로세스를 종료
-    ```python
-    pid = os.spwan(os.P_DETACH, 'path/to/program', 'arg1', 'arg2')
-    os.kill(pid, signal.SIGTERM)
-    ```
+```python
+pid = os.spwan(os.P_DETACH, 'path/to/program', 'arg1', 'arg2')
+os.kill(pid, signal.SIGTERM)
+```
 
 <br>
 
