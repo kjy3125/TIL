@@ -7,4 +7,4 @@
 <br>
 
 #### python
-- [test.md](/home/cyuer/cyuer/git/TIL/code/test.md)
+- [os](./code/os.md)
