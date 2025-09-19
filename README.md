@@ -8,3 +8,9 @@
 
 #### python
 - [os](./code/os.md)
+
+
+<br>
+
+#### 영어
+- [단어장](./english/voca.md)
