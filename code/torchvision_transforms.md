@@ -78,8 +78,11 @@ tensor_image = transform(image)
 ```
 
 2. transforms.Normalize
+
     - 텐서를 normalization 하기 위해 표준화(standardization)를 진행.
+
     - 각 채널에 대해 (x-mean) / std 를 적용.
+
 ```python
 transform = transform.Normalize(
     mean=[0.5, 0.5, 0.5],
@@ -91,7 +94,9 @@ normalized_image = transform(tensor_image)
 ### 2-3 Data Augmentation (데이터 증강)
 
 1. transforms.RandomHorizontalFlip
+
     - 이미지 좌우 반전(Horizontal Flip)을 확률적으로 적용.
+
     - v2.RandomHorizontalFlip으로 대체를 권함
 
 ```py
@@ -114,7 +119,9 @@ flipped_image = transform(image)
 ```
 
 2. transforms.RandomRotation
+
     - 이미지를 랜덤 각도로 회전
+
         - 회전 시 빈 공간은 기본적으로 검은색(0)으로 채움.
         - 이미지 크기는 유지되므로 모서리 부분이 잘릴 수 있음
 
@@ -130,8 +137,11 @@ rotated_image = transform(image)
 ```
 
 3. transforms.RandomRotation
+
     - 이미지를 랜덤 각도로 회전.
+
         - 회전 시 빈 공간은 기본적으로 검은색(0)으로 채움
+
         - 이미지 크기는 유지되므로 모서리 부분이 잘릴 수 있음
 
 ```py
@@ -166,7 +176,9 @@ transform = v2.RandomRotation(
 ### 2-4 기타
 
 1. transforms.Grayscale
+
     - 이미지를 Gray Scale (L)로 변환
+
     - v2.Lambda로 대체하는 것을 권장함
 
 ```py
@@ -175,17 +187,27 @@ gray_image = transform(image)
 ```
 
 2. transforms.Lambda
+
     - 사용자 정의 변환을 구현한 lambda 표현을 적용.
+
     - 익명함수와 같이 사용시 다음의 이슈가 있음:
+
         - Multiprocessing의 경우 문제가 발생: DataLoader에서 num_workers를 1개 이상 사용 불가. 
+
         - 이는 pickle로 직렬화가 안되기 때문임.
+
         - 익명함수는 prototyping 등의 테스트에만 사용할 것.
+
     - 익명함수: 이름 없는 일회용 함수. 파이썬에서는 lambda로 만든다.
+
         - 특징: 한 줄로 된 간단한 로직만 구현 가능하다.
+
         - 주요 용도: map(), filter(), sorted()등 다른 함수의 인자로 함수 기능을 잠시 전달해야 할 때 코드를 간결하게 만들기 위해 사용한다.
+
         - 주의점: 복잡한 로직을 담기 시작하면 오히려 가독성이 떨어지므로, 그럴 땐 일반 함수(def)를 사용하는 것이 좋다.
+
         <br>
-        
+
     ```py
     # lambda 매개변수: 리턴할 표현식
     add_lambda = lambda a, b: a + b
@@ -198,6 +220,7 @@ gray_image = transform(image)
 
 
 ## 3. 변환 파이프라인 구축
+
 - torchvision.transforms.Compose를 통해 여러 transform 객체들을 연결하여 pipeline(파이프 라인)을 만들 수 있음.
 
 ```py
@@ -227,15 +250,23 @@ class CustomTransform:
 ```
 
 - 현재는 torch.nn.Module을 상속하여 custom transform 클래스를 정의하는 것이 권해짐.
+
     - \_\_call\_\_ 함수에서 get_params 메서드를 호출하고, 이후 forward 메서드가 호출되는 순서로 동작함.
+
     - 때문에 get_params 메서드에서 변환에 필요한 파라미터들을 반환하고, 이들을 arguments로 이용하여 forward에서 변환이 되도록 수행함.
 
 - get_params 패턴 도입에 따른 장점:
+
     - batch 처리 일관성: batch 전체에 동일한 파라미터 적용 가능함
+
         - v2에서 제공하는 transform들은 batch 차원을 가진 tensor 객체를 네이티브로 지원함.
+
     - 조건부 변환: 이미지 속성에 따른 적응적 파라미터 생성가능함.
+
     - 파라미터 의존성: 복합 변환에서 상호 연관된 파라미터 관리 가능.
+
     - 디버깅 지원: 파라미터 로깅 및 재현 가능한 변환
+
     - 성능 최적화: 파라미터 계산과 변환 로직 분리로 효율성 향상
 
 - 다음 코드는 get_params를 도입한 CustomTransform 클래스를 만드는 간단한 예이다:
@@ -298,8 +329,11 @@ class AdvancedCustomTransform(torch.nn.Module):
 advanced_transform = AdvancedCustomTransform()
 ```
 ### 4-2 함수 기반 커스텀 변환
+
 - 단순한 변환은 함수로 구현할 수 있음.
+
     - transforms.Lamdba를 활용하여 간단히 추가 가능.
+
     - 또는 functional 모듈의 함수들을 이용할 수도 있음.
 
 ```py
@@ -316,6 +350,7 @@ transform = transforms.Compose([
 ```
 
 - 역시 v2로 대체하는 것이 권장됨:
+
 ```py
 from torchvision.transforms import v2
 
@@ -354,13 +389,19 @@ transform_v2_custom = v2.Compose([
 ## 5. DataLoader와 결합하여 GPU로 데이터 옮기기
 
 - torchvision.transforms는
+
     - Dataset과 결합하여 대규모 데이터셋에 자동으로 변환을 적용.
+
     - DataLoader는 Dataset 객체를 통해 데이터를 로드할 때, CPU에서 동작함.
+
     - 때문에 Dataset 객체의 \_\_getitem\_\_ 메서드 내부에서 호출되는 Transform 객체도 CPU에서 동작.
+
     - 때문에, DataLoader가 Transformdl적용된 batch를 반환하면 이를 GPU로 이동시켜야 한다.
+
 - 때문에, 학습 중 GPU를 효율적으로 활용하려면 최종 데이터(Transform이 적용된 Tensor 객체)를 GPU로 이동시켜야함. 
 
 1. 데이터셋 및 DataLoader 정의
+
 ```py
 from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
@@ -407,18 +448,27 @@ for epoch in range(5):
 ```
 ## 6. 팁
 - Data Augmentation과 Pre-Processing 분리:
+
     - Data Augmentation은 Training 단계에서만 사용
+
     - Evaluation/Test 단계에서는 Pre-Processing만 적용.
+
     - 가장 명확한 방법은 각 단계별로 개별 Dataset 객체를 사용하는 것임.
+
     - 개별 Dataset은 각기 다른 transform을 설정
 
 - 고정 메모리와 비동기 전송 활용:
+
     - pin_memory=True와
+
     - non_blocking=True를 사용해
+
     - GPU 전송 성능을 최적화.
 
 - GPU 활용 여부 확인:
+
     - 학습 전에 GPU가 사용 가능한지 확인.
+    
     ```py
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     ```
