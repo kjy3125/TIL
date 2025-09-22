@@ -23,3 +23,4 @@
 - radiance (명사): 빛
 - emit (동사): (빛 &middot; 열 &middot; 소리 등을) 내다
 - irradiance (명사): 방사 조도(무엇에서 나오는 빛의 양을 나타내는 단위 )
+- 
