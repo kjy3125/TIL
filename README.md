@@ -10,6 +10,7 @@
 - [os](./code/os.md)
 
 <br>
+<br>
 
 #### pytorch
 
@@ -19,13 +20,25 @@
 
 
 <br>
+<br>
+
 
 #### 영어
 - [단어장](./english/voca.md)
 
 
 <br>
+<br>
 
 #### 학부연구생
 
 - [기록](./research/research1.md)
+
+
+
+
+<br>
+<br>
+
+#### 학교 수업
+- [미래자동차혁명](./school/미래자동차혁명.md)
