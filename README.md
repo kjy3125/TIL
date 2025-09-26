@@ -32,7 +32,8 @@
 
 #### 학부연구생
 
-- [기록](./research/research1.md)
+- [타이어](./research/research1.md)
+- [차량 제어](./research/)
 
 
 
