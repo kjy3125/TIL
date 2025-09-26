@@ -53,4 +53,5 @@
 
     - Multivalve: 여러 기능이 통합된 밸브
   
-### 
+
+### Data-Driven Thermal Anomaly Detection in Large Battery Packs 논문 조사
