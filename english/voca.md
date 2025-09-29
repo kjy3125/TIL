@@ -41,3 +41,26 @@
 - 명사-to-명사: 1. 상호 관계 및 연결(~와, ~사이의, ~간의), 2. 물리적 범위 및 연속성 (~에서, ~까지), 3. 직접적인 대면 또는 일대일 대응
 - heterogeneity: 이질성
 - rely on(동사): 의존하다
+- each(대명사): 각각의
+- predetermined(동사): 미리 결정하다
+- parameter(명사): 함수나 메서드에 전달되는 변수
+- derived(형용사): 유래된, 파생된
+- Anomaly-free : 이상 현상이 없는
+- nominal: 명목상의
+- standard deviation(명사): 표준편차
+- principal component: 주성분
+- would : will의 과거형
+- point(동사): 가리키다
+- decompose(동사): 분해되다
+- via(전치사): 경유하여, 통하여
+- singular value decomposition: 특이값 분해 
+- singular(형용사): 특이한, 뛰어난
+- selected(형용사): 선택된
+- cumulative(형용사): 누적되는, 누계의
+- truncated(형용사): 끝을 잘라버린, 끝을 자른
+- multiplication(명사): 곱셈
+- into(전치사): 안[속]으로[에]
+- span(동사): 걸치다, (넓은 범위, 많은 것에) 포괄하다.
+- stationary(형용사): 움직이지 않는, 정지된, 정상
+- exponentially weighted moving average: 지수 가중 이동 평균
+- 
